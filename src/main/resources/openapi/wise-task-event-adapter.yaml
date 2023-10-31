@@ -1,0 +1,36 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+servers:
+  - url: http://localhost:8085
+    description: user server
+paths:
+  /event/graph/constructor/solution:
+    post:
+      summary: Getting a graph editing event when solving a problem
+      tags:
+        - ConstructorSolutionEvent
+      operationId: handleConstructorSolutionEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConstructorEvent'
+      responses:
+        200:
+          description: Event successfully processed
+          content:
+            application/json:
+              schema:
+                properties:
+                  result:
+                    type: string
+
+components:
+  schemas:
+    ConstructorEvent:
+      type: object
+      additionalProperties:
+        type: string
